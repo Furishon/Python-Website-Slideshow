@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 driver = webdriver.Chrome()
+driver.maximize_window()
 
 def openUrl(url, onTime):
 	'''OPENS A SPECIFIED URL AND KEEPS IT OPEN FOR (ATLEAST) A SPECIFIED AMOUNT OF TIME
@@ -12,10 +13,11 @@ ARGS:
 	driver.get(url)
 	time.sleep(onTime) 
 
-f = open('urls.txt', 'r')
-urlList = f.readlines()
-for url in urlList:
-	openUrl(url=str(url), onTime=3)	
+while True:
+	f = open('urls.txt', 'r')
+	urlList = f.readlines()
+	for url in urlList:
+		openUrl(url=str(url), onTime=3)	
 
 print('CLOSING...') 
 driver.close()
